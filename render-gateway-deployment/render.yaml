@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: workshop-parts-gateway
+    runtime: docker
+    region: singapore
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: BIND_HOST
+        value: 0.0.0.0
+      - key: TEAM_PROVIDER_URL
+        value: https://ollama.com/v1/chat/completions
+      - key: TEAM_MODEL
+        value: gemma4:31b
+      - key: TEAM_GATEWAY_TOKEN
+        generateValue: true
+      - key: TEAM_PROVIDER_KEY
+        sync: false
